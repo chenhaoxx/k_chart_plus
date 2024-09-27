@@ -25,6 +25,7 @@ class ChartColors {
   Color ma5Color;
   Color ma10Color;
   Color ma30Color;
+  Color ma135Color;
   Color upColor;
   Color dnColor;
   Color volColor;
@@ -90,6 +91,8 @@ class ChartColors {
         return ma10Color;
       case 2:
         return ma30Color;
+      case 3:
+        return ma135Color;
       default:
         return ma5Color;
     }
@@ -110,6 +113,7 @@ class ChartColors {
     this.ma5Color = const Color(0xffE5B767),
     this.ma10Color = const Color(0xff1FD1AC),
     this.ma30Color = const Color(0xffB48CE3),
+    this.ma135Color = const Color(0xFF222223),
     this.upColor = const Color(0xFFD5405D),
     this.dnColor = const Color(0xFF14AD8F),
     this.volColor = const Color(0xff2f8fd5),

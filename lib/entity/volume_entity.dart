@@ -4,5 +4,6 @@ mixin VolumeEntity {
   late double close;
   late double vol;
   double? MA5Volume;
-  double? MA10Volume;
+  double? MA40Volume;
+  double? MA135Volume;
 }

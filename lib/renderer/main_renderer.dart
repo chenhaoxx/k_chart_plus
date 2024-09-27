@@ -40,7 +40,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       this.chartColors,
       this.scaleX,
       this.verticalTextAlignment,
-      [this.maDayList = const [5, 10, 20]])
+      [this.maDayList = const [5, 10, 20, 60]])
       : super(
             chartRect: mainRect,
             maxValue: maxValue,

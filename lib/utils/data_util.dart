@@ -4,7 +4,7 @@ import '../entity/index.dart';
 
 class DataUtil {
   static calculate(List<KLineEntity> dataList,
-      [List<int> maDayList = const [5, 10, 20], int n = 20, k = 2]) {
+      [List<int> maDayList = const [5, 10, 20, 60], int n = 20, k = 2]) {
     calcMA(dataList, maDayList);
     calcBOLL(dataList, n, k);
     calcVolumeMA(dataList);
@@ -109,13 +109,15 @@ class DataUtil {
 
   static void calcVolumeMA(List<KLineEntity> dataList) {
     double volumeMa5 = 0;
-    double volumeMa10 = 0;
+    double volumeMa40 = 0;
+    double volumeMa135 = 0;
 
     for (int i = 0; i < dataList.length; i++) {
       KLineEntity entry = dataList[i];
 
       volumeMa5 += entry.vol;
-      volumeMa10 += entry.vol;
+      volumeMa40 += entry.vol;
+      volumeMa135 += entry.vol;
 
       if (i == 4) {
         entry.MA5Volume = (volumeMa5 / 5);
@@ -126,13 +128,22 @@ class DataUtil {
         entry.MA5Volume = 0;
       }
 
-      if (i == 9) {
-        entry.MA10Volume = volumeMa10 / 10;
-      } else if (i > 9) {
-        volumeMa10 -= dataList[i - 10].vol;
-        entry.MA10Volume = volumeMa10 / 10;
+      if (i == 39) {
+        entry.MA40Volume = volumeMa40 / 40;
+      } else if (i > 39) {
+        volumeMa40 -= dataList[i - 40].vol;
+        entry.MA40Volume = volumeMa40 / 40;
       } else {
-        entry.MA10Volume = 0;
+        entry.MA40Volume = 0;
+      }
+
+      if (i == 134) {
+        entry.MA135Volume = volumeMa135 / 135;
+      } else if (i > 134) {
+        volumeMa135 -= dataList[i - 135].vol;
+        entry.MA135Volume = volumeMa135 / 135;
+      } else {
+        entry.MA135Volume = 0;
       }
     }
   }

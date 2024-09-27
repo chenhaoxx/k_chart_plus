@@ -39,9 +39,14 @@ class VolRenderer extends BaseChartRenderer<VolumeEntity> {
           this.chartColors.ma5Color);
     }
 
-    if (lastPoint.MA10Volume != 0) {
-      drawLine(lastPoint.MA10Volume, curPoint.MA10Volume, canvas, lastX, curX,
+    if (lastPoint.MA40Volume != 0) {
+      drawLine(lastPoint.MA40Volume, curPoint.MA40Volume, canvas, lastX, curX,
           this.chartColors.ma10Color);
+    }
+
+    if (lastPoint.MA135Volume != 0) {
+      drawLine(lastPoint.MA135Volume, curPoint.MA135Volume, canvas, lastX, curX,
+          this.chartColors.ma135Color);
     }
   }
 
@@ -53,16 +58,20 @@ class VolRenderer extends BaseChartRenderer<VolumeEntity> {
     TextSpan span = TextSpan(
       children: [
         TextSpan(
-            text: "VOL:${NumberUtil.format(data.vol)}    ",
+            text: "VOL:${NumberUtil.formatCN(data.vol)}    ",
             style: getTextStyle(this.chartColors.volColor)),
         if (data.MA5Volume.notNullOrZero)
           TextSpan(
-              text: "MA5:${NumberUtil.format(data.MA5Volume!)}    ",
+              text: "MA5:${NumberUtil.formatCN(data.MA5Volume!)}    ",
               style: getTextStyle(this.chartColors.ma5Color)),
-        if (data.MA10Volume.notNullOrZero)
+        if (data.MA40Volume.notNullOrZero)
           TextSpan(
-              text: "MA10:${NumberUtil.format(data.MA10Volume!)}    ",
+              text: "MA40:${NumberUtil.formatCN(data.MA40Volume!)}    ",
               style: getTextStyle(this.chartColors.ma10Color)),
+        if (data.MA135Volume.notNullOrZero)
+          TextSpan(
+              text: "MA135:${NumberUtil.formatCN(data.MA135Volume!)}    ",
+              style: getTextStyle(this.chartColors.ma135Color)),
       ],
     );
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);

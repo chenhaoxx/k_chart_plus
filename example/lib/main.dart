@@ -249,8 +249,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getData(String period) {
-    final Future<String> future = getChatDataFromInternet(period);
-    // final Future<String> future = getChatDataFromJson();
+    // final Future<String> future = getChatDataFromInternet(period);
+    final Future<String> future = getChatDataFromJson();
     future.then((String result) {
       solveChatData(result);
     }).catchError((_) {
@@ -283,8 +283,8 @@ class _MyHomePageState extends State<MyHomePage> {
     datas = list
         .map((item) => KLineEntity.fromJson(item as Map<String, dynamic>))
         .toList()
-        // .reversed
-        // .toList()
+        .reversed
+        .toList()
         .cast<KLineEntity>();
     DataUtil.calculate(datas!);
     showLoading = false;
