@@ -20,6 +20,18 @@ class ChartTranslations {
     this.amount = 'Amount',
     this.vol = 'Volume',
   });
+
+  ChartTranslations.cn({
+    this.date = '日期',
+    this.open = '开盘',
+    this.high = '最高',
+    this.low = '最低',
+    this.close = '收盘',
+    this.changeAmount = '涨跌额',
+    this.change = '涨跌幅',
+    this.amount = '成交额',
+    this.vol = '成交量',
+  });
 }
 
 class DepthChartTranslations {

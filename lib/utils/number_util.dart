@@ -16,6 +16,36 @@ class NumberUtil {
     }
   }
 
+  static String formatCN(dynamic value) {
+    final num = double.tryParse(value.toString());
+    if (num == null) {
+      return ''; // 处理非数字输入
+    }
+
+    if (num >= 10000 && num < 100000000) {
+      // 大于一万小于一亿
+      final quotient = (num / 10000).floor();
+      final remainder = num % 10000;
+      if (remainder == 0) {
+        return '$quotient万';
+      } else {
+        return '$quotient.${(remainder / 1000).floor()}万';
+      }
+    } else if (num >= 100000000) {
+      // 大于等于一亿
+      final quotient = (num / 100000000).floor();
+      final remainder = num % 100000000;
+      if (remainder == 0) {
+        return '$quotient亿';
+      } else {
+        return '$quotient.${(remainder / 10000000).floor()}亿';
+      }
+    } else {
+      // 小于一万
+      return value.toStringAsFixed(2);
+    }
+  }
+
   static int getDecimalLength(double b) {
     String s = b.toString();
     int dotIndex = s.indexOf(".");

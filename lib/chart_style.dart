@@ -110,8 +110,8 @@ class ChartColors {
     this.ma5Color = const Color(0xffE5B767),
     this.ma10Color = const Color(0xff1FD1AC),
     this.ma30Color = const Color(0xffB48CE3),
-    this.upColor = const Color(0xFF14AD8F),
-    this.dnColor = const Color(0xFFD5405D),
+    this.upColor = const Color(0xFFD5405D),
+    this.dnColor = const Color(0xFF14AD8F),
     this.volColor = const Color(0xff2f8fd5),
     this.macdColor = const Color(0xff2f8fd5),
     this.difColor = const Color(0xffE5B767),
@@ -121,17 +121,17 @@ class ChartColors {
     this.jColor = const Color(0xffB48CE3),
     this.rsiColor = const Color(0xffE5B767),
     this.defaultTextColor = const Color(0xFF909196),
-    this.nowPriceUpColor = const Color(0xFF14AD8F),
-    this.nowPriceDnColor = const Color(0xFFD5405D),
+    this.nowPriceUpColor = const Color(0xFFD5405D),
+    this.nowPriceDnColor = const Color(0xFF14AD8F),
     this.nowPriceTextColor = const Color(0xffffffff),
 
     /// trend color
     this.trendLineColor = const Color(0xFFF89215),
 
     ///depth color
-    this.depthBuyColor = const Color(0xFF14AD8F),
+    this.depthBuyColor = const Color(0xFFD5405D),
     this.depthBuyPathColor = const Color(0x3314AD8F),
-    this.depthSellColor = const Color(0xFFD5405D),
+    this.depthSellColor = const Color(0xFF14AD8F),
     this.depthSellPathColor = const Color(0x33D5405D),
 
     ///value border color after selection
@@ -146,8 +146,8 @@ class ChartColors {
     ///color of annotation content
     this.infoWindowNormalColor = const Color(0xFF222223),
     this.infoWindowTitleColor = const Color(0xFF4D4D4E), //0xFF707070
-    this.infoWindowUpColor = const Color(0xFF14AD8F),
-    this.infoWindowDnColor = const Color(0xFFD5405D),
+    this.infoWindowUpColor = const Color(0xFFD5405D),
+    this.infoWindowDnColor = const Color(0xFF14AD8F),
     this.hCrossColor = const Color(0xFF222223),
     this.vCrossColor = const Color(0x28424652),
     this.crossTextColor = const Color(0xFF222223),

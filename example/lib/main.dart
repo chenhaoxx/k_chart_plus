@@ -102,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               secondaryStateLi: _secondaryStateLi.toSet(),
               fixedLength: 2,
               timeFormat: TimeFormat.YEAR_MONTH_DAY,
+              xFrontPadding: 10,
             ),
             if (showLoading)
               Container(
@@ -249,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getData(String period) {
     final Future<String> future = getChatDataFromInternet(period);
-    //final Future<String> future = getChatDataFromJson();
+    // final Future<String> future = getChatDataFromJson();
     future.then((String result) {
       solveChatData(result);
     }).catchError((_) {
@@ -260,8 +261,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<String> getChatDataFromInternet(String? period) async {
-    var url =
-        'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
+    var url = 'http://localhost:16888/stock/kline?symbol=601162';
+    // 'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
     late String result;
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -282,8 +283,8 @@ class _MyHomePageState extends State<MyHomePage> {
     datas = list
         .map((item) => KLineEntity.fromJson(item as Map<String, dynamic>))
         .toList()
-        .reversed
-        .toList()
+        // .reversed
+        // .toList()
         .cast<KLineEntity>();
     DataUtil.calculate(datas!);
     showLoading = false;

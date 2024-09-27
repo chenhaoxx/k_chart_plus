@@ -64,7 +64,7 @@ class KChartWidget extends StatefulWidget {
     this.chartStyle,
     this.chartColors, {
     required this.isTrendLine,
-    this.xFrontPadding = 100,
+    this.xFrontPadding = 10,
     this.mainState = MainState.MA,
     this.secondaryStateLi = const <SecondaryState>{},
     // this.onSecondaryTap,
