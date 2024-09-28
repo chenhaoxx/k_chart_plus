@@ -114,15 +114,15 @@ class SecondaryRenderer extends BaseChartRenderer<MACDEntity> {
               style: getTextStyle(this.chartColors.defaultTextColor)),
           if (data.macd != 0)
             TextSpan(
-                text: "K:${format(data.k)}    ",
+                text: "K: ${format(data.k)}    ",
                 style: getTextStyle(this.chartColors.kColor)),
           if (data.dif != 0)
             TextSpan(
-                text: "D:${format(data.d)}    ",
+                text: "D: ${format(data.d)}    ",
                 style: getTextStyle(this.chartColors.dColor)),
           if (data.dea != 0)
             TextSpan(
-                text: "J:${format(data.j)}    ",
+                text: "J: ${format(data.j)}    ",
                 style: getTextStyle(this.chartColors.jColor)),
         ];
         break;

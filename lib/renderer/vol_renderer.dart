@@ -82,7 +82,7 @@ class VolRenderer extends BaseChartRenderer<VolumeEntity> {
   @override
   void drawVerticalText(canvas, textStyle, int gridRows) {
     TextSpan span =
-        TextSpan(text: "${NumberUtil.format(maxValue)}", style: textStyle);
+        TextSpan(text: "${NumberUtil.formatCN(maxValue)}", style: textStyle);
     TextPainter tp = TextPainter(text: span, textDirection: TextDirection.ltr);
     tp.layout();
     tp.paint(

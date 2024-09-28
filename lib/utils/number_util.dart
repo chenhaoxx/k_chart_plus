@@ -16,7 +16,7 @@ class NumberUtil {
     }
   }
 
-  static String formatCN(dynamic value) {
+  static String formatCN(dynamic value, { int fixedLenght = 2 }) {
     final num = double.tryParse(value.toString());
     if (num == null) {
       return ''; // 处理非数字输入
@@ -29,6 +29,7 @@ class NumberUtil {
       if (remainder == 0) {
         return '$quotient万';
       } else {
+        // return '${(quotient+(remainder / 1000)).toStringAsFixed(fixedLenght)}万';
         return '$quotient.${(remainder / 1000).floor()}万';
       }
     } else if (num >= 100000000) {
@@ -42,7 +43,7 @@ class NumberUtil {
       }
     } else {
       // 小于一万
-      return value.toStringAsFixed(2);
+      return value.toStringAsFixed(fixedLenght);
     }
   }
 
