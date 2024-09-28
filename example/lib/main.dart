@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<String> getChatDataFromInternet(String? period) async {
-    var url = 'http://localhost:16888/stock/kline?symbol=601162&indexs=kdj';
+    var url = 'http://localhost:16888/stock/kline?symbol=002693&indexs=kdj';
     // 'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
     late String result;
     final response = await http.get(Uri.parse(url));
