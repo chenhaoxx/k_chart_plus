@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<KLineEntity>? datas;
   bool showLoading = true;
   bool _volHidden = false;
-  MainState _mainState = MainState.MA;
+  MainState _mainState = MainState.NEW_MA;
   // final Set<SecondaryState> _secondaryStateLi = <SecondaryState>{};
   final List<SecondaryState> _secondaryStateLi = [];
   List<DepthEntity>? _bids, _asks;
@@ -249,8 +249,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getData(String period) {
-    // final Future<String> future = getChatDataFromInternet(period);
-    final Future<String> future = getChatDataFromJson();
+    final Future<String> future = getChatDataFromInternet(period);
+    // final Future<String> future = getChatDataFromJson();
     future.then((String result) {
       solveChatData(result);
     }).catchError((_) {
@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<String> getChatDataFromInternet(String? period) async {
-    var url = 'http://localhost:16888/stock/kline?symbol=601162';
+    var url = 'http://localhost:16888/stock/kline?symbol=601162&indexs=kdj';
     // 'https://api.huobi.br.com/market/history/kline?period=${period ?? '1day'}&size=300&symbol=btcusdt';
     late String result;
     final response = await http.get(Uri.parse(url));
@@ -281,10 +281,10 @@ class _MyHomePageState extends State<MyHomePage> {
     final Map parseJson = json.decode(result) as Map<dynamic, dynamic>;
     final list = parseJson['data'] as List<dynamic>;
     datas = list
-        .map((item) => KLineEntity.fromJson(item as Map<String, dynamic>))
+        .map((item) => KLineEntity.fromJsonV2(item as Map<String, dynamic>))
         .toList()
-        .reversed
-        .toList()
+        // .reversed
+        // .toList()
         .cast<KLineEntity>();
     DataUtil.calculate(datas!);
     showLoading = false;

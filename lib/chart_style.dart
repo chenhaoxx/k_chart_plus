@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/material.dart' show Color, Colors;
 
 /// ChartColors
 ///
@@ -84,6 +84,8 @@ class ChartColors {
   Color maxColor;
   Color minColor;
 
+  Color signalColor;
+
   /// get MA color via index
   Color getMAColor(int index) {
     switch (index % 3) {
@@ -96,6 +98,20 @@ class ChartColors {
       default:
         return ma5Color;
     }
+  }
+
+  final Map<int, Color> newMaColorMap = {
+    0: Colors.lightGreen,
+    1: Colors.red,
+    2: Colors.green,
+    3: Colors.cyan,
+    4: Color(0xFFC080FF),
+    5: Colors.cyan,
+    6: Color(0xFFC080FF),
+  };
+
+  Color getNewMAColor(int index) {
+    return newMaColorMap[index % 7]!;
   }
 
   /// constructor chart color
@@ -159,6 +175,8 @@ class ChartColors {
     ///The color of the maximum and minimum values in the current display
     this.maxColor = const Color(0xFF222223),
     this.minColor = const Color(0xFF222223),
+
+    this.signalColor = Colors.blueAccent
   });
 }
 

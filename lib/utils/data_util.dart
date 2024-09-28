@@ -8,7 +8,8 @@ class DataUtil {
     calcMA(dataList, maDayList);
     calcBOLL(dataList, n, k);
     calcVolumeMA(dataList);
-    calcKDJ(dataList);
+    // 服务器计算
+    // calcKDJ(dataList);
     calcMACD(dataList);
     calcRSI(dataList);
     calcWR(dataList);
@@ -173,7 +174,18 @@ class DataUtil {
     }
   }
 
-  static void calcKDJ(List<KLineEntity> dataList) {
+  static void calcKDJV2(List<KLineEntity> dataList, {
+    int period = 8,
+    int kPeriod = 2,
+    int dPeriod = 2
+  }) {
+  }
+
+  static void calcKDJ(List<KLineEntity> dataList, {
+    int periods = 9,
+    int kPeriods = 2,
+    int dPeriods = 2
+  }) {
     var preK = 50.0;
     var preD = 50.0;
     final tmp = dataList.first;
@@ -182,7 +194,7 @@ class DataUtil {
     tmp.j = 50.0;
     for (int i = 1; i < dataList.length; i++) {
       final entity = dataList[i];
-      final n = max(0, i - 8);
+      final n = max(0, i - periods);
       var low = entity.low;
       var high = entity.high;
       for (int j = n; j < i; j++) {

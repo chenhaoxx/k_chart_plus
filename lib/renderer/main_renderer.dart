@@ -75,6 +75,21 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       span = TextSpan(
         children: _createMATextSpan(data),
       );
+    } else if (state == MainState.NEW_MA) {
+      final list = data.newAvgLineList;
+      final len = list?.length ?? 0;
+      final titles = ['Life: ', '快: ', '慢: ', '上: ', '上上: ', '下: ', '下下: '];
+      final textspanList = <TextSpan>[];
+      for (var i = 0; i < len; i++) {
+        textspanList.add(
+          TextSpan(
+              text: "${titles[i]}${format(list![i])}  ",
+              style: getTextStyle(chartColors.getNewMAColor(i)))
+        );
+      }
+      span = TextSpan(
+        children: textspanList
+      );
     } else if (state == MainState.BOLL) {
       span = TextSpan(
         children: [
@@ -121,6 +136,8 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       drawCandle(curPoint, canvas, curX);
       if (state == MainState.MA) {
         drawMaLine(lastPoint, curPoint, canvas, lastX, curX);
+      } else if (state == MainState.NEW_MA) {
+        drawNewMALine(lastPoint, curPoint, canvas, lastX, curX);
       } else if (state == MainState.BOLL) {
         drawBollLine(lastPoint, curPoint, canvas, lastX, curX);
       }
@@ -184,12 +201,25 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
   void drawMaLine(CandleEntity lastPoint, CandleEntity curPoint, Canvas canvas,
       double lastX, double curX) {
     for (int i = 0; i < (curPoint.maValueList?.length ?? 0); i++) {
-      if (i == 3) {
-        break;
-      }
+      // if (i == 3) {
+      //   break;
+      // }
       if (lastPoint.maValueList?[i] != 0) {
         drawLine(lastPoint.maValueList?[i], curPoint.maValueList?[i], canvas,
             lastX, curX, this.chartColors.getMAColor(i));
+      }
+    }
+  }
+
+  void drawNewMALine(CandleEntity lastPoint, CandleEntity curPoint,
+      Canvas canvas, double lastX, double curX) {
+    for (int i = 0; i < (curPoint.newAvgLineList?.length ?? 0); i++) {
+      // if (i == 3) {
+      //   break;
+      // }
+      if (lastPoint.newAvgLineList?[i] != 0) {
+        drawLine(lastPoint.newAvgLineList?[i], curPoint.newAvgLineList?[i],
+            canvas, lastX, curX, this.chartColors.getNewMAColor(i));
       }
     }
   }
@@ -222,7 +252,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       if (open - close < mCandleLineWidth) {
         open = close + mCandleLineWidth;
       }
-      chartPaint.color = this.chartColors.upColor;
+      chartPaint.color = curPoint.isSignal ? this.chartColors.signalColor : this.chartColors.upColor;
       canvas.drawRect(
           Rect.fromLTRB(curX - r, close, curX + r, open), chartPaint);
       canvas.drawRect(
@@ -232,7 +262,7 @@ class MainRenderer extends BaseChartRenderer<CandleEntity> {
       if (close - open < mCandleLineWidth) {
         open = close - mCandleLineWidth;
       }
-      chartPaint.color = this.chartColors.dnColor;
+      chartPaint.color = curPoint.isSignal ? this.chartColors.signalColor : this.chartColors.dnColor;
       canvas.drawRect(
           Rect.fromLTRB(curX - r, open, curX + r, close), chartPaint);
       canvas.drawRect(
